@@ -1,0 +1,111 @@
+{
+  "name": "adoptedWord",
+  "mongodb": {
+        "collection": "adoptedWords"
+      },
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "word": {
+      "type": "string",
+      "required": true
+    },
+    "wordHash": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "active"
+    },
+    "dateAdded": {
+      "type": "date",
+      "required": true
+    },
+    "note": {
+      "type": "string"
+    },
+    "Twitter": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "default": "paid"
+    },
+    "earlyAdopter": {
+      "type": "string"
+    },
+    "paidStatus": {
+      "type": "string",
+      "default": "paid"
+    },
+    "promoCode": {
+      "type": "string"
+    },
+    "offensive": {
+      "type": "string",
+      "required": true,
+      "default": "FALSE"
+    },
+    "giftee": {
+      "type": "string"
+    },
+    "gifteeEmail": {
+      "type": "string"
+    },
+    "gifteeNote": {
+      "type": "string"
+    },
+    "gifteeTwitter": {
+      "type": "string"
+    },
+    "gifteeLink": {
+      "type": "string"
+    },
+    "WordnikUsername": {
+      "type": "string"
+    },
+    "backerType": {
+      "type": "string",
+      "required": true,
+      "default": "ADOPTER"
+    },
+    "adoptLink": {
+      "type": "string"
+    },
+    "renewal": {
+      "type": "string",
+      "required": true,
+      "default": "false"
+    },
+    "dateExpires": {
+      "type": "date",
+      "required": true
+    },
+    "payment": {
+      "type": "object",
+      "required": true
+    },
+    "paypal-url": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

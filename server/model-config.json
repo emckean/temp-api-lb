@@ -12,5 +12,9 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "adoptedWord": {
+    "dataSource": "mLab",
+    "public": true
   }
 }
