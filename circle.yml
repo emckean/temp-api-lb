@@ -15,5 +15,5 @@ dependencies:
 
 database:
   override:
-    - mongo < test/database/loadTest.js    
+    - mongo < ../test/database/loadTest.js    
 
