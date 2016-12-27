@@ -9,7 +9,7 @@ dependencies:
     - mongodb-linux-x86_64-ubuntu1204-3.2.3
   pre:
     - if [[ ! -d mongodb-linux-x86_64-ubuntu1204-3.2.3 ]]; then wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.2.3.tgz && tar xvzf mongodb-linux-x86_64-ubuntu1204-3.2.3.tgz; fi
-    - sudo stop mongodb
+    - sudo stop mongod
     - sudo cp mongodb-linux-x86_64-ubuntu1204-3.2.3/bin/* /usr/bin
-    - sudo start mongodb
+    - sudo start mongod
 
