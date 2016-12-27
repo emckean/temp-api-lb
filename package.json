@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
+    "test": "node_modules/.bin/mocha -u tdd",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
