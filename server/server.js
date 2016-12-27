@@ -5,7 +5,7 @@ var boot = require('loopback-boot');
 var app = module.exports = loopback();
 
 //'env' is set to 'development if process.env.NODE_ENV isn't set
-console.log(app.get('env'))
+console.log(app.get('env'));
 
 app.start = function() {
   // start the web server
