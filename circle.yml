@@ -15,5 +15,5 @@ dependencies:
 
 database:
   override:
-    - mongo < /home/ubuntu/wordnik-api-lb/test/database/loadTest.js    
+    - mongo < /home/ubuntu/wordnik-api-lb/test/database/loadData.js    
 
