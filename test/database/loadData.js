@@ -34,4 +34,4 @@ var adoption = {
     "paypal-url": ""
   }
 
-db.adoptions.insert(adoption);
+db.adoptedWord.insert(adoption);
