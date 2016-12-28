@@ -1,4 +1,6 @@
 "use strict";
+process.env.NODE_ENV = 'circle';
+
 var app = require('../server/server.js');
 var expect = require ('chai').expect;
 var supertest = require('supertest');
@@ -18,7 +20,7 @@ describe ('get all test', function (){
     .expect(200, done)
     .expect(function (res) {
     	console.log(res.body)
-      expect(res.body[0].word).to.equal('empiricism')});
+        expect(res.body[0].word).to.equal('empiricism')});
   });
 
 });
