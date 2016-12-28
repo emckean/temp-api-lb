@@ -4,7 +4,7 @@
     "port":27017,
     "username":"",
     "password":"",
-    "name": "test",
+    "database": "test",
     "connector":"mongodb"
   }
 }
