@@ -15,6 +15,26 @@ describe ('canary test', function (){
 
 describe ('get all test', function (){
 
+	before(function(done) {
+	    // runs before all tests in this block
+	   if (process.env.NODE_ENV = 'development'){
+			var setupLocal = require ('./database/setupLocalMongo.js');
+			setupLocal.setUp(function(err, response){
+				done();
+			})
+		}
+	});
+
+	after(function(done) {
+	   if (process.env.NODE_ENV = 'development'){
+			var teardownLocal = require ('./database/teardownLocalMongo.js');
+			teardownLocal.tearDown(function(err, response){
+				done();
+			})
+		}
+		
+	});
+
  it('returns an adopted word', function(done) {
     api.get('/api/adoptedWords/')
     .expect(200, done)
