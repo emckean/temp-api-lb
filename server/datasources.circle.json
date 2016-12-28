@@ -1,6 +1,6 @@
 {
   "mLab":{
-    "url": "mongodb://root:@localhost:27017/test",
+    "url": "mongodb://localhost:27017/test",
     "name": "mLab",
     "connector":"mongodb"
   }
