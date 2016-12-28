@@ -1,6 +1,8 @@
 //lets require/import the mongodb native drivers.
 var mongodb = require('mongodb');
 
+var testData = require('./testdata.json')
+
 var adoption = {
     "fullName": "Testy McTesterson",
     "email": "michaeldayreads@alphaorder.com",
@@ -53,7 +55,7 @@ exports.setUp  = function(callback) {
 
 	    var collection = db.collection('adoptedWords');
 	    // do some work here with the database.
-	    collection.insert(adoption, function (err, result) {
+	    collection.insert(testData, function (err, result) {
 	      if (err) {
 	        console.log(err);
 	        db.close();

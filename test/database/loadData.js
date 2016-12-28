@@ -1,5 +1,6 @@
 use test
 
+var testData = require('./testdata.json');
 var adoption = {
     "fullName": "Testy McTesterson",
     "email": "michaeldayreads@alphaorder.com",
@@ -34,6 +35,6 @@ var adoption = {
     "paypal-url": ""
   }
 
-db.adoptedWords.insert(adoption);
+db.adoptedWords.insert(testData);
 db.getCollectionNames()
 db.stats()
