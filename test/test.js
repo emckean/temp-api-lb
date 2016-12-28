@@ -17,6 +17,7 @@ describe ('get all test', function (){
     api.get('/api/adoptedWords/')
     .expect(200, done)
     .expect(function (res) {
+    	console.log(res.body)
       expect(res.body[0].word).to.equal('empiricism')});
   });
 
