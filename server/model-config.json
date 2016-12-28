@@ -14,7 +14,7 @@
     ]
   },
   "adoptedWord": {
-    "dataSource": "mLab",
+    "dataSource": "mongodb",
     "public": true
   }
 }
