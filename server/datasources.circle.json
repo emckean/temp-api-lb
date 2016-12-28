@@ -1,10 +1,7 @@
 {
   "mLab":{
-    "host":"localhost",
-    "port":27017,
-    "username":"",
-    "password":"",
-    "database": "test",
+    "url": "mongodb://root:@localhost:27017/test",
+    "name": "mLab",
     "connector":"mongodb"
   }
 }
