@@ -2,7 +2,7 @@
   "mLab":{
     "host":"localhost",
     "port":27017,
-    "database":"test",
+    "database":"adoptedWords",
     "username":"",
     "password":"",
     "name": "mLab",

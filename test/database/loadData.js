@@ -1,4 +1,4 @@
-use test
+use adoptedWords
 
 var adoption = {
     "fullName": "Testy McTesterson",
