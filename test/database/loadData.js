@@ -34,4 +34,8 @@ var adoption = {
     "paypal-url": ""
   }
 
+<<<<<<< HEAD
 db.adoptedWords.insert(adoption);
+=======
+db.adoptions.insert(adoption);
+>>>>>>> parent of 24dab23... fixes name of test db to match connector
