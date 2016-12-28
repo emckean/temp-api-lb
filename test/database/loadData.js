@@ -1,4 +1,4 @@
-use adoptedWords
+use test
 
 var adoption = {
     "fullName": "Testy McTesterson",
@@ -34,6 +34,6 @@ var adoption = {
     "paypal-url": ""
   }
 
-db.adoptedWords.insert(adoption);
+db.adoptedWord.insert(adoption);
 db.getCollectionNames()
 db.stats()

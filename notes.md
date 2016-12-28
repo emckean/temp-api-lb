@@ -7,6 +7,13 @@
 -- CircleCI: setting up mongodb in circle.yml: http://thecodebarbarian.com/setting-up-circle-ci-with-node-js
 -- removed ,
     "posttest": "npm run lint && nsp check" from package.json for the moment
+-- adding data to mongodb w/mongo shell: http://www.mwtestconsultancy.co.uk/unexpected-automation-quickly-creating-test-data-in-mongodb/
+-- running supertest
+-- adding mongo to CircleCI, adding data, running tests
+-- added mongo url to CircleCI env variables
+NEXT STEPS: ssh into circle, run app w/debug and check connectors
+?? maybe change to local url instead of port? 
+
 
 -- need example of embedded object property w/model
 -- debugging: DEBUG=loopback:connector:mongodb node .

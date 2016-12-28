@@ -1,5 +1,5 @@
 "use strict";
-process.env.NODE_ENV = 'circle';
+// process.env.NODE_ENV = 'circle';
 
 var app = require('../server/server.js');
 var expect = require ('chai').expect;
