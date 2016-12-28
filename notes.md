@@ -10,9 +10,26 @@
 -- adding data to mongodb w/mongo shell: http://www.mwtestconsultancy.co.uk/unexpected-automation-quickly-creating-test-data-in-mongodb/
 -- running supertest
 -- adding mongo to CircleCI, adding data, running tests
--- added mongo url to CircleCI env variables
+-- added mongo url to CircleCI env variables (this was probably a mistake)
 NEXT STEPS: ssh into circle, run app w/debug and check connectors
 ?? maybe change to local url instead of port? 
+
+12/28
+-- connecting to ssh: ssh -i emckeanNIK_rsa -p PORT ubuntu@IP
+-- removed mongo url from circle
+-- changed to url in config
+-- info about deploying to BlueMix: https://circleci.com/docs/deploy-bluemix/
+-- mongo on BMDevOps: https://www.ng.bluemix.net/docs/services/MongoDB/index.html
+-- created testdata.json file (/test/database)
+mongod --config /usr/local/etc/mongod.conf
+
+Load-testing resources:
+http://loader.io/
+nice blog post from 3Scale: https://www.3scale.net/2015/04/how-to-load-test-and-tune-performance-on-your-api-part-i/
+part II: https://www.3scale.net/2015/05/how-to-load-test-and-tune-performance-on-your-api-part-ii/
+https://artillery.io/faq.html
+dino (uses AWS Lambda: http://veldstra.org/2016/02/18/project-dino-load-testing-on-lambda-with-artillery.html)
+
 
 
 -- need example of embedded object property w/model

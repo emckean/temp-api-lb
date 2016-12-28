@@ -24,6 +24,7 @@
     "eslint": "^2.13.1",
     "eslint-config-loopback": "^4.0.0",
     "mocha": "^3.2.0",
+    "mongodb": "^2.2.16",
     "nsp": "^2.1.0",
     "supertest": "^2.0.1"
   },
