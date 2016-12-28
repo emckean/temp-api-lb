@@ -35,3 +35,5 @@ var adoption = {
   }
 
 db.adoptedWords.insert(adoption);
+db.getCollectionNames()
+db.stats()
