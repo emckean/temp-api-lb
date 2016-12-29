@@ -4,7 +4,7 @@
         "collection": "adoptedWords"
       },
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
@@ -23,7 +23,6 @@
     },
     "wordHash": {
       "type": "string",
-      "id": true,
       "required": true
     },
     "status": {

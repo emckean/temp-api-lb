@@ -1,4 +1,5 @@
 //lets require/import the mongodb native drivers.
+console.log('in setup')
 var mongodb = require('mongodb');
 
 var testData = require('./testdata.json')

@@ -35,12 +35,22 @@ describe ('get all test', function (){
 		
 	});
 
- it('returns an adopted word', function(done) {
+ it('returns all the adopted word', function(done) {
     api.get('/api/adoptedWords/')
-    .expect(200, done)
-    .expect(function (res) {
+    .end(function (err, res){
+    	expect(Object.keys(res.body).length).to.equal(10);
+    	done();
+    })
+  });
+
+  it('returns an adopted word by wordHash', function(done) {
+    api.get('/api/adoptedWords/findByHash?wordHash=4b7489207cc9382e0a55c3791a1a3cfc5ae684bb')
+    .end(function (err, res){
+    	if (err) throw err;
     	console.log(res.body)
-        expect(res.body[0].word).to.equal('empiricism')});
+    	expect(Object.keys(res.body).length).to.equal(1);
+    	done();
+    })   
   });
 
 });
