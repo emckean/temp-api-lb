@@ -31,7 +31,7 @@
       "default": "active"
     },
     "dateAdded": {
-      "type": "date",
+      "type": "Date",
       "required": true
     },
     "note": {
@@ -92,7 +92,11 @@
       "default": "false"
     },
     "dateExpires": {
-      "type": "date",
+      "type": "Date",
+      "required": true
+    },
+    "dateRenewed": {
+      "type": "Date",
       "required": true
     },
     "payment": {
