@@ -1,5 +1,8 @@
 "use strict";
-// process.env.NODE_ENV = 'circle';
+if (process.env.NODE_ENV === undefined){
+	console.log(process.env.NODE_ENV)
+	process.env.NODE_ENV = 'development'
+}
 
 var app = require('../server/server.js');
 var expect = require ('chai').expect;
@@ -9,22 +12,19 @@ var api = supertest(app)
 //cloudFoundry setup
 var util = require('util')
 var cfenv = require('cfenv');
-var appenv = cfenv.getAppEnv();
 
-console.log('this is the appenv: ' + JSON.stringify(appenv))
+//from a local git-ignored copy of services 
+var localVCAP = null
+localVCAP = require("../local-vcap.json")
+var appEnv = cfenv.getAppEnv({vcap: localVCAP})
+
 // Within the application environment (appenv) there's a services object
-var services = appenv.services;
-console.log(process.env.VCAP_SERVICES)
-// The services object is a map named by service so we extract the one for rabbitmq
+var services = appEnv.services;
+// The services object is a map named by service so we extract the one for mongo
 var mongodb_services = services["compose-for-mongodb"];
 
-// This check ensures there is a services for MongoDb databases
-if (!util.isUndefined(mongodb_services)) {
-	console.log("Must be bound to compose-for-mongodb services")
-}
-
-// We now take the first bound RabbitMQ service and extract its credentials object
-// var credentials = mongodb_services[0].credentials;
+// We now take the first bound mongodb service and extract its credentials object
+var credentials = mongodb_services[0].credentials;
 
 // Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
 // We convert that from a string into a Buffer entry in an array which we use when
@@ -45,13 +45,13 @@ describe ('get all test', function (){
 	    // runs before all tests in this block
 
 	    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'Bluemix-test'){
+	    	console.log('got here')
 			var teardownLocal = require ('./database/teardownLocalMongo.js');
 			teardownLocal.tearDown(function(err, response){
-				done();
 			})
 		}
 
-	   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'development'){
+	   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'Bluemix-test'){
 			var setupLocal = require ('./database/setupLocalMongo.js');
 			setupLocal.setUp(function(err, response){
 				done();
