@@ -32,6 +32,7 @@ module.exports = function(Adoptedword) {
 	Adoptedword.findExpired = function(date, cb){
 		//need to deal with date format, probably use MOMENT
 		//Mon, 02 Jan 2017 03:46:45 GMT
+		console.log('this is the date: ' + date)
 		var ISODate;
 		if (moment(date, "DD-MMM-YYYY").isValid()){
 			console.log('got here')
@@ -40,8 +41,7 @@ module.exports = function(Adoptedword) {
 
 		var testDate = new Date(ISODate)
 
-		// dataSource.connector.collection(collectionName)
-
+		// this errors out as err, db = undefined
 		// app.dataSources.mLab.connect(function(err,db){
 	 //        db.collection('adoptedWords').findOne({},function(err,doc){
 	 //            console.log(doc)
@@ -49,31 +49,29 @@ module.exports = function(Adoptedword) {
 	 //        console.log(err)
 	 //        console.log(db)
 	 //    })
+
 	 	//this almost works! 
-	 	var dbFunc = 'function() { return db.adoptedWords.findOne({}); }';
+	 	// var dbFunc = 'function() { return db.adoptedWords.findOne({}); }';
 
-		 app.dataSources.mLab.connector.db.eval(dbFunc, function(err, result) {
-		 	console.log(err)
-		 	console.log(result)
-		 	cb(null, result)
-	    if (err) {
-	        console.log("There was an error calling dbFunc", err);
-	        return;
-	    }
-	   // Do something with returned value 'result'
-	});
+		 // app.dataSources.mLab.connector.db.eval(dbFunc, function(err, result) {
+		 // 	console.log(err)
+		 // 	console.log(result)
+		 // 	cb(null, result)
+		 //   if (err) {
+		 //       console.log("There was an error calling dbFunc", err);
+		 //       return;
+		 //   }
+		 // });
 
-	//  db.findOne({}, function(err, doc) {
- //      console.log(err)
- //      console.log(doc)
-	// })
 
-		// Adoptedword.find({
-		// 	where: {
-		// 		dateExpires: {lt: testDate}
-  //           }}, function (err, words){
-		// 		cb(null, words);
-		// 	})
+		var startDate = "01-01-2000"
+		Adoptedword.find({
+			where: {
+				dateExpires: {between: [new Date(startDate), new Date(date)]}
+            }}, function (err, words){
+				cb(null, words);
+			})
+
 		};	
 
 
