@@ -15,7 +15,9 @@ var services = appenv.services;
 var mongodb_services = services["compose-for-mongodb"];
 
 // This check ensures there is a services for MongoDb databases
-assert(!util.isUndefined(mongodb_services), "Must be bound to compose-for-rabbitmq services");
+if (!util.isUndefined(mongodb_services) {
+	console.log("Must be bound to compose-for-mongodb services")
+}
 
 // We now take the first bound RabbitMQ service and extract its credentials object
 var credentials = mongodb_services[0].credentials;
