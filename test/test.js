@@ -10,9 +10,11 @@ var api = supertest(app)
 var util = require('util')
 var cfenv = require('cfenv');
 var appenv = cfenv.getAppEnv();
+
+console.log('this is the appenv: ' + JSON.stringify(appenv))
 // Within the application environment (appenv) there's a services object
 var services = appenv.services;
-console.log(services)
+console.log(process.env.VCAP_SERVICES)
 // The services object is a map named by service so we extract the one for rabbitmq
 var mongodb_services = services["compose-for-mongodb"];
 
@@ -22,7 +24,7 @@ if (!util.isUndefined(mongodb_services)) {
 }
 
 // We now take the first bound RabbitMQ service and extract its credentials object
-var credentials = mongodb_services[0].credentials;
+// var credentials = mongodb_services[0].credentials;
 
 // Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
 // We convert that from a string into a Buffer entry in an array which we use when

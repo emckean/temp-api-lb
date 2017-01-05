@@ -1,0 +1,6 @@
+---
+applications:
+- name: lb-mongo-test-app
+- buildpack: nodejs_buildpack
+- services: 
+- lb-test-mongodb 
