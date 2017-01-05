@@ -7,10 +7,12 @@ var supertest = require('supertest');
 var api = supertest(app)
 
 //cloudFoundry setup
+var util = require('util')
 var cfenv = require('cfenv');
 var appenv = cfenv.getAppEnv();
 // Within the application environment (appenv) there's a services object
 var services = appenv.services;
+console.log(services)
 // The services object is a map named by service so we extract the one for rabbitmq
 var mongodb_services = services["compose-for-mongodb"];
 
