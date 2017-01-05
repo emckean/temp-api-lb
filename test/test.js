@@ -15,7 +15,7 @@ var services = appenv.services;
 var mongodb_services = services["compose-for-mongodb"];
 
 // This check ensures there is a services for MongoDb databases
-if (!util.isUndefined(mongodb_services) {
+if (!util.isUndefined(mongodb_services)) {
 	console.log("Must be bound to compose-for-mongodb services")
 }
 
