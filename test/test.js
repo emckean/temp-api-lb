@@ -6,6 +6,26 @@ var expect = require ('chai').expect;
 var supertest = require('supertest');
 var api = supertest(app)
 
+//cloudFoundry setup
+var cfenv = require('cfenv');
+var appenv = cfenv.getAppEnv();
+// Within the application environment (appenv) there's a services object
+var services = appenv.services;
+// The services object is a map named by service so we extract the one for rabbitmq
+var mongodb_services = services["compose-for-mongodb"];
+
+// This check ensures there is a services for MongoDb databases
+assert(!util.isUndefined(mongodb_services), "Must be bound to compose-for-rabbitmq services");
+
+// We now take the first bound RabbitMQ service and extract its credentials object
+var credentials = mongodb_services[0].credentials;
+
+// Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
+// We convert that from a string into a Buffer entry in an array which we use when
+// connecting.
+var caCert = new Buffer(credentials.ca_certificate_base64, 'base64');
+
+
 
 describe ('canary test', function (){
 	it ('should pass this canary test', function (){
@@ -21,7 +41,7 @@ describe ('get all test', function (){
 	    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'Bluemix-test'){
 			var teardownLocal = require ('./database/teardownLocalMongo.js');
 			teardownLocal.tearDown(function(err, response){
-				// done();
+				done();
 			})
 		}
 
