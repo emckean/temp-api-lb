@@ -18,14 +18,14 @@ describe ('get all test', function (){
 	before(function(done) {
 	    // runs before all tests in this block
 
-	    if (process.env.NODE_ENV = 'development'){
+	    if (process.env.NODE_ENV = 'development' || process.env.NODE_ENV = 'Bluemix-test'){
 			var teardownLocal = require ('./database/teardownLocalMongo.js');
 			teardownLocal.tearDown(function(err, response){
 				// done();
 			})
 		}
 
-	   if (process.env.NODE_ENV = 'development'){
+	   if (process.env.NODE_ENV = 'development' || process.env.NODE_ENV = 'development'){
 			var setupLocal = require ('./database/setupLocalMongo.js');
 			setupLocal.setUp(function(err, response){
 				done();
