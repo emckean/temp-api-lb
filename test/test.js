@@ -9,29 +9,34 @@ var expect = require ('chai').expect;
 var supertest = require('supertest');
 var api = supertest(app)
 
-//cloudFoundry setup
-var util = require('util')
-var cfenv = require('cfenv');
+//cloudFoundry local setup
+if (process.env.NODE_ENV === 'development') {
+	var util = require('util')
+	var cfenv = require('cfenv');
 
-//from a local git-ignored copy of services 
-var localVCAP = null
-localVCAP = require("../local-vcap.json")
-var appEnv = cfenv.getAppEnv({vcap: localVCAP})
+	//from a local git-ignored copy of services 
+	var localVCAP = null
+	localVCAP = require("../local-vcap.json")
+	var appEnv = cfenv.getAppEnv({vcap: localVCAP})
 
-// Within the application environment (appenv) there's a services object
-var services = appEnv.services;
-// The services object is a map named by service so we extract the one for mongo
-var mongodb_services = services["compose-for-mongodb"];
+	// Within the application environment (appenv) there's a services object
+	var services = appEnv.services;
+	// The services object is a map named by service so we extract the one for mongo
+	var mongodb_services = services["compose-for-mongodb"];
 
-// We now take the first bound mongodb service and extract its credentials object
-var credentials = mongodb_services[0].credentials;
+	// We now take the first bound mongodb service and extract its credentials object
+	var credentials = mongodb_services[0].credentials;
 
-// Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
-// We convert that from a string into a Buffer entry in an array which we use when
-// connecting.
-var caCert = new Buffer(credentials.ca_certificate_base64, 'base64');
+	// Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
+	// We convert that from a string into a Buffer entry in an array which we use when
+	// connecting.
+	var caCert = new Buffer(credentials.ca_certificate_base64, 'base64');
 
+}
 
+if (process.env.NODE_ENV === 'Bluemix-test') {
+	console.log(process.env.MONGODB_CONNECTION_URL)
+}
 
 describe ('canary test', function (){
 	it ('should pass this canary test', function (){
