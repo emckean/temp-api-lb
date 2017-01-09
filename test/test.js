@@ -31,14 +31,14 @@ describe ('get all test', function (){
 	before(function(done) {
 	    // runs before all tests in this block
 
-	    if (process.env.NODE_ENV === 'development' ){
+	    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'circle'){
 	    	console.log('got here')
 			var teardownLocal = require ('./database/teardownLocalMongo.js');
 			teardownLocal.tearDown(function(err, response){
 			})
 		}
 
-	   if (process.env.NODE_ENV === 'development' ){
+	   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'circle'){
 			var setupLocal = require ('./database/setupLocalMongo.js');
 			setupLocal.setUp(function(err, response){
 				done();
