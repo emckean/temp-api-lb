@@ -10,29 +10,7 @@ var supertest = require('supertest');
 var api = supertest(app)
 
 //cloudFoundry local setup
-if (process.env.NODE_ENV === 'development') {
-	var util = require('util')
-	var cfenv = require('cfenv');
 
-	//from a local git-ignored copy of services 
-	var localVCAP = null
-	localVCAP = require("../local-vcap.json")
-	var appEnv = cfenv.getAppEnv({vcap: localVCAP})
-
-	// Within the application environment (appenv) there's a services object
-	var services = appEnv.services;
-	// The services object is a map named by service so we extract the one for mongo
-	var mongodb_services = services["compose-for-mongodb"];
-
-	// We now take the first bound mongodb service and extract its credentials object
-	var credentials = mongodb_services[0].credentials;
-
-	// Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
-	// We convert that from a string into a Buffer entry in an array which we use when
-	// connecting.
-	var caCert = new Buffer(credentials.ca_certificate_base64, 'base64');
-
-}
 
 if (process.env.NODE_ENV === 'development') {
 	process.env.MONGODB_CONNECTION_URL = 'mongodb://localhost:27017/test';
@@ -53,16 +31,30 @@ describe ('get all test', function (){
 	before(function(done) {
 	    // runs before all tests in this block
 
-	    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'Bluemix-test'){
+	    if (process.env.NODE_ENV === 'development' ){
 	    	console.log('got here')
 			var teardownLocal = require ('./database/teardownLocalMongo.js');
 			teardownLocal.tearDown(function(err, response){
 			})
 		}
 
-	   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'Bluemix-test'){
+	   if (process.env.NODE_ENV === 'development' ){
 			var setupLocal = require ('./database/setupLocalMongo.js');
 			setupLocal.setUp(function(err, response){
+				done();
+			})
+		}
+
+		if (process.env.NODE_ENV === 'Bluemix-test'){
+	    	console.log('got here')
+			var teardownBluemix = require ('./database/teardownBluemixMongo.js');
+			teardownBluemix.tearDown(function(err, response){
+			})
+		}
+
+	   if (process.env.NODE_ENV === 'Bluemix-test'){
+			var setupBluemix = require ('./database/setupBluemixMongo.js');
+			setupBluemix.setUp(function(err, response){
 				done();
 			})
 		}
