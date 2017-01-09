@@ -10,11 +10,11 @@ var cfenv = require('cfenv');
 // var localVCAP = null
 // localVCAP = require("../local-vcap.json")
 // var appEnv = cfenv.getAppEnv({vcap: localVCAP})
-var appEnv = JSON.parse(process.env.appEnv);
+var appEnv = (process.env.appEnv);
 console.log(appEnv)
 // Within the application environment (appenv) there's a services object
 var services = appEnv.services;
-console.log(JSON.stringify(services))
+console.log((services))
 // The services object is a map named by service so we extract the one for mongo
 var mongodb_services = services["compose-for-mongodb"];
 console.log(mongodb_services)
