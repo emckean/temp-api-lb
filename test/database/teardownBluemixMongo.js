@@ -36,7 +36,7 @@ exports.tearDown = function(callback) {
 mongodb://admin:DWEUSRBMBWEWXDAA@sl-us-dal-9-portal.4.dblayer.com:18234,sl-us-dal-9-portal.3.dblayer.com:18234/admin?ssl=true'
 	//let's parse the credentials.uri
 	var parsedURI = url.parse(credentials.uri)
-	var mongoURI = 'mongodb://loopback:' + process.env.MONGO_PWD+'@' + process.env.host+ '/test?ssl=true'
+	var mongoURI = 'mongodb://loopback:' + process.env.MONGO_PWD+'@' + parsedURI.host+ '/test?ssl=true'
 	console.log(mongoURI)
 
 	// Use connect method to connect to the Server
