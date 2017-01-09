@@ -4,6 +4,7 @@
     "name": "lb-test-mongodb",
     "connector":"mongodb",
     "ssl":true,
+    "database": "test",
     "server": {
 		"auto_reconnect": true,
 		"reconnectTries": 100,
