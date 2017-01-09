@@ -55,7 +55,7 @@ exports.setUp  = function(callback) {
 	    //HURRAY!! We are connected. :)
 	    console.log('Connection established to', url);
 
-	    var collection = db.collection('adoptedWords');
+	    var collection = db.collection('test', 'adoptedWords');
 	    // do some work here with the database.
 	    collection.insert(testData, function (err, result) {
 	      if (err) {
