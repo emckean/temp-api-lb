@@ -43,7 +43,8 @@ exports.setUp  = function(callback) {
 	var MongoClient = mongodb.MongoClient;
 
 	// Connection URL. This is where your mongodb server is running.
-	var url = 'mongodb://localhost:27017/test';
+	// var url = 'mongodb://localhost:27017/test';
+    var url = process.env.MONGODB_CONNECTION_URL;
 
 	// Use connect method to connect to the Server
 	MongoClient.connect(url, function (err, db) {

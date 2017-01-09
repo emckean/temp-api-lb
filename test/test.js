@@ -34,6 +34,10 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
+if (process.env.NODE_ENV === 'development') {
+	process.env.MONGODB_CONNECTION_URL = 'mongodb://localhost:27017/test';
+}
+
 if (process.env.NODE_ENV === 'Bluemix-test') {
 	console.log(process.env.MONGODB_CONNECTION_URL)
 }
