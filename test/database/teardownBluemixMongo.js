@@ -10,7 +10,7 @@ var cfenv = require('cfenv');
 // var localVCAP = null
 // localVCAP = require("../local-vcap.json")
 // var appEnv = cfenv.getAppEnv({vcap: localVCAP})
-var appEnv = cfenv.getAppEnv();
+var appEnv = process.env.appEnv;
 console.log(appEnv)
 // Within the application environment (appenv) there's a services object
 var services = appEnv.services;
