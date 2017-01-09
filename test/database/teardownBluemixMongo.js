@@ -11,11 +11,12 @@ var cfenv = require('cfenv');
 // localVCAP = require("../local-vcap.json")
 // var appEnv = cfenv.getAppEnv({vcap: localVCAP})
 var appEnv = cfenv.getAppEnv();
-
+console.log(appEnv)
 // Within the application environment (appenv) there's a services object
 var services = appEnv.services;
 // The services object is a map named by service so we extract the one for mongo
 var mongodb_services = services["compose-for-mongodb"];
+console.log(mongodb_services)
 
 // We now take the first bound mongodb service and extract its credentials object
 var credentials = mongodb_services[0].credentials;
