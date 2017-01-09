@@ -45,7 +45,7 @@ var cfenv = require('cfenv');
 // var localVCAP = null
 // localVCAP = require("../local-vcap.json")
 // var appEnv = cfenv.getAppEnv({vcap: localVCAP})
-var appEnv = process.env.appEnv;
+var appEnv = JSON.parse(process.env.appEnv);
 
 // Within the application environment (appenv) there's a services object
 var services = appEnv.services;
@@ -77,7 +77,7 @@ exports.setUp  = function(callback) {
         mongos: {
             ssl: true,
             sslValidate: true,
-            sslCA: ca,
+            sslCA: caCert,
             poolSize: 1,
             reconnectTries: 1
         }

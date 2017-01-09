@@ -44,7 +44,7 @@ exports.tearDown = function(callback) {
         mongos: {
             ssl: true,
             sslValidate: true,
-            sslCA: ca,
+            sslCA: caCert,
             poolSize: 1,
             reconnectTries: 1
         }
