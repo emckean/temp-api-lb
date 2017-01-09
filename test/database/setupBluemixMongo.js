@@ -1,7 +1,7 @@
 //lets require/import the mongodb native drivers.
 console.log('in setup')
 var MongoClient = require('mongodb').MongoClient;
-
+var url = require('url');
 var testData = require('./testdata.json')
 
 var adoption = {
@@ -72,8 +72,11 @@ exports.setUp  = function(callback) {
 	// var url = 'mongodb://localhost:27017/test';
     // var url = process.env.MONGODB_CONNECTION_URL;
 
+    var parsedURI = url.parse(credentials.uri)
+    var mongoURI = 'mongodb://loopback:' + process.env.MONGO_PWD+'@' + process.env.host+ '/test?ssl=true'
+    console.log(mongoURI)
 	// Use connect method to connect to the Server
-	MongoClient.connect(credentials.uri, {
+	MongoClient.connect(mongoURI, {
         mongos: {
             ssl: true,
             sslValidate: true,

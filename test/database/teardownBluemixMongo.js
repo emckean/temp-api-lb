@@ -1,7 +1,7 @@
 //lets require/import the mongodb native drivers.
 console.log('in teardown')
 var MongoClient = require('mongodb').MongoClient;
-
+var url = require('url');
 
 var util = require('util')
 var cfenv = require('cfenv');
@@ -33,14 +33,14 @@ var mongodb;
 
 exports.tearDown = function(callback) {
 	//We need to work with "MongoClient" interface in order to connect to a mongodb server.
-
-
-	// Connection URL. This is where your mongodb server is running.
-	// var url = 'mongodb://localhost:27017/test';
-	// var url = process.env.MONGODB_CONNECTION_URL;
+mongodb://admin:DWEUSRBMBWEWXDAA@sl-us-dal-9-portal.4.dblayer.com:18234,sl-us-dal-9-portal.3.dblayer.com:18234/admin?ssl=true'
+	//let's parse the credentials.uri
+	var parsedURI = url.parse(credentials.uri)
+	var mongoURI = 'mongodb://loopback:' + process.env.MONGO_PWD+'@' + process.env.host+ '/test?ssl=true'
+	console.log(mongoURI)
 
 	// Use connect method to connect to the Server
-	MongoClient.connect(credentials.uri, {
+	MongoClient.connect(mongoURI, {
         mongos: {
             ssl: true,
             sslValidate: true,
