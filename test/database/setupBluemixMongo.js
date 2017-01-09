@@ -87,7 +87,7 @@ exports.setUp  = function(callback) {
 	  	callback(new Error(err))
 	  } else {
 	    //HURRAY!! We are connected. :)
-	    console.log('Connection established to', url);
+	    console.log('Connection established to', credentials.uri);
         mongodb = db.db("test")
 	    var collection = mongodb.collection('adoptedWords');
 	    // do some work here with the database.

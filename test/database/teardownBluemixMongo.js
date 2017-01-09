@@ -54,7 +54,7 @@ exports.tearDown = function(callback) {
 	    callback(new Error(err))
 	  } else {
 	    //HURRAY!! We are connected. :)
-	    console.log('Connection established to', url);
+	    console.log('Connection established to', credentials.uri);
 
 	    // do some work here with the database.
 	    mongodb = db.db("test")
