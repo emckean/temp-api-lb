@@ -11,18 +11,15 @@ var cfenv = require('cfenv');
 // localVCAP = require("../local-vcap.json")
 // var appEnv = cfenv.getAppEnv({vcap: localVCAP})
 var appEnv = JSON.parse(process.env.appEnv);
-console.log(appEnv)
 // Within the application environment (appenv) there's a services object
 var services = appEnv.services;
-console.log((services))
+
 // The services object is a map named by service so we extract the one for mongo
 var mongodb_services = services["compose-for-mongodb"];
-console.log(mongodb_services)
 
 // We now take the first bound mongodb service and extract its credentials object
 var credentials = mongodb_services[0].credentials;
 
-console.log(credentials)
 
 // Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
 // We convert that from a string into a Buffer entry in an array which we use when
@@ -36,6 +33,7 @@ exports.tearDown = function(callback) {
 mongodb://admin:DWEUSRBMBWEWXDAA@sl-us-dal-9-portal.4.dblayer.com:18234,sl-us-dal-9-portal.3.dblayer.com:18234/admin?ssl=true'
 	//let's parse the credentials.uri
 	var parsedURI = url.parse(credentials.uri)
+	console.log(parsedURI.pathname)
 	var mongoURI = 'mongodb://loopback-test:' + process.env.MONGO_PWD+'@' + parsedURI.host+ '/test?ssl=true'
 	console.log(mongoURI)
 
@@ -54,7 +52,7 @@ mongodb://admin:DWEUSRBMBWEWXDAA@sl-us-dal-9-portal.4.dblayer.com:18234,sl-us-da
 	    callback(new Error(err))
 	  } else {
 	    //HURRAY!! We are connected. :)
-	    console.log('Connection established to', credentials.uri);
+	    console.log('Connection established to', mongoURI);
 
 	    // do some work here with the database.
 	    mongodb = db.db("test")
