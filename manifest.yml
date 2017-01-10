@@ -1,10 +1,9 @@
 ---
 applications:
 - name: lb-mongo-test-app
-  mem: 128M
-  instances: 1
+  memory: 128M
   path: .
+  buildpack: nodejs_buildpack
   host: lb-mongo-test-app
-- buildpack: nodejs_buildpack
-- services: 
-- lb-test-mongodb 
+  services:
+  - lb-test-mongodb
