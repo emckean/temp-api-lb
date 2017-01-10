@@ -7,6 +7,9 @@
     "start": "node server/server.js",
     "test": "node_modules/.bin/mocha -u tdd"
   },
+  "engines": {
+        "node": ">=4.4.6"
+  },
   "dependencies": {
     "cfenv": "^1.0.3",
     "compression": "^1.0.3",
