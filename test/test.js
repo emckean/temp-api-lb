@@ -71,6 +71,7 @@ describe ('get all test', function (){
 	// });
 
  it('returns all the adopted word', function(done) {
+ 	console.log(process.env.MONGO_PWD)
     api.get('/api/adoptedWords/')
     .end(function (err, res){
     	expect(Object.keys(res.body).length).to.equal(10);

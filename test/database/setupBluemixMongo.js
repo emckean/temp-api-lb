@@ -55,7 +55,6 @@ var mongodb_services = services["compose-for-mongodb"];
 // We now take the first bound mongodb service and extract its credentials object
 var credentials = mongodb_services[0].credentials;
 
-console.log(credentials)
 
 // Within the credentials, an entry ca_certificate_base64 contains the SSL pinning key
 // We convert that from a string into a Buffer entry in an array which we use when
