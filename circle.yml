@@ -13,7 +13,8 @@ dependencies:
     - sudo cp mongodb-linux-x86_64-ubuntu1204-3.2.3/bin/* /usr/bin
     - sudo start mongod
     - sudo pip install --upgrade pip
-    - sudo -H pip install awsebcli
+    - sudo apt-get update && apt-get install -y python-dev
+    - sudo -H pip install 'awsebcli==3.7.4'
 
 database:
   override:
