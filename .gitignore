@@ -10,6 +10,7 @@
 *.swp
 *.tgz
 *.xml
+wordnik-api-lb.zip
 .DS_Store
 .idea
 .project
