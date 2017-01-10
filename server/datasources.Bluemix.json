@@ -1,0 +1,17 @@
+{
+  "mLab":{
+    "name": "lb-test-mongodb",
+    "url": "${MONGODB_CONNECTION_URL}",
+    "connector":"mongodb",
+    "ssl":true,
+    "database": "production",
+    "server": {
+		"auto_reconnect": true,
+		"reconnectTries": 100,
+		"reconnectInterval": 1000,
+		"sslValidate":false,
+		"checkServerIdentity":false,
+		"sslCA":"${ca_certificate_base64}"
+	} 
+  }
+}
