@@ -4,7 +4,7 @@
   "main": "server/server.js",
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
+    "start": "node server/server.js",
     "test": "node_modules/.bin/mocha -u tdd"
   },
   "dependencies": {
@@ -34,6 +34,6 @@
     "type": "",
     "url": ""
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "description": "wordnik-api-lb"
 }
