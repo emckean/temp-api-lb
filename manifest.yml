@@ -1,0 +1,9 @@
+---
+applications:
+- name: lb-mongo-test-app
+  memory: 512M
+  path: .
+  host: lb-mongo-test-app
+  timeout: 180
+  services:
+  - lb-test-mongodb
