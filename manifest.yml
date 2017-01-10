@@ -1,8 +1,0 @@
----
-applications:
-- name: lb-mongo-test-app
-  memory: 128M
-  path: .
-  host: lb-mongo-test-app
-  services:
-  - lb-test-mongodb
