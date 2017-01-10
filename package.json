@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node server/server.js",
-    "test": "snyk test && node_modules/.bin/mocha -u tdd"
+    "test": "node_modules/.bin/mocha -u tdd"
   },
   "engines": {
     "node": ">=4.4.6"
