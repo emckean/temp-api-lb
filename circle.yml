@@ -24,3 +24,5 @@ deployment:
       - snyk auth $SNYK_TOKEN
       - snyk monitor
       - bash ./setup-eb.sh
+      - eb init 'nodenik-api' -r us-west-1 -p node.js
+      - eb deploy nodenikApi-private-dev --profile EB-deployer --debug
