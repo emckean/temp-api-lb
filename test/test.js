@@ -50,14 +50,18 @@ describe ('get all test', function (){
 			var teardownBluemix = require ('./database/teardownBluemixMongo.js');
 			teardownBluemix.tearDown(function(err, response){
 			})
-		}
-
-	   if (process.env.NODE_ENV === 'Bluemix-test'){
 			var setupBluemix = require ('./database/setupBluemixMongo.js');
 			setupBluemix.setUp(function(err, response){
 				done();
 			})
 		}
+
+	 //   if (process.env.NODE_ENV === 'Bluemix-test'){
+		// 	var setupBluemix = require ('./database/setupBluemixMongo.js');
+		// 	setupBluemix.setUp(function(err, response){
+		// 		done();
+		// 	})
+		// }
 	});
 
 	// after(function(done) {
@@ -71,7 +75,6 @@ describe ('get all test', function (){
 	// });
 
  it('returns all the adopted word', function(done) {
- 	console.log(process.env.MONGO_PWD)
     api.get('/api/adoptedWords/')
     .end(function (err, res){
     	expect(Object.keys(res.body).length).to.equal(10);

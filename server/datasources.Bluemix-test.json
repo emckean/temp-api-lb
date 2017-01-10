@@ -1,13 +1,10 @@
 {
   "mLab":{
     "name": "lb-test-mongodb",
+    "url": "${MONGODB_CONNECTION_URL}",
     "connector":"mongodb",
     "ssl":true,
     "database": "test",
-    "host": "sl-us-dal-9-portal.4.dblayer.com",
-    "port": 18234,
-    "username": "loopback-test",
-    "password": "l00000pback",
     "server": {
 		"auto_reconnect": true,
 		"reconnectTries": 100,
