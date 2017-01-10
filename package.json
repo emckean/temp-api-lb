@@ -5,10 +5,10 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node server/server.js",
-    "test": "node_modules/.bin/mocha -u tdd"
+    "test": "snyk test && node_modules/.bin/mocha -u tdd"
   },
   "engines": {
-        "node": ">=4.4.6"
+    "node": ">=4.4.6"
   },
   "dependencies": {
     "cfenv": "^1.0.3",
@@ -31,7 +31,8 @@
     "mocha": "^3.2.0",
     "mongodb": "^2.2.16",
     "nsp": "^2.1.0",
-    "supertest": "^2.0.1"
+    "supertest": "^2.0.1",
+    "snyk": "^1.23.3"
   },
   "repository": {
     "type": "git",
