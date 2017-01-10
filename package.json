@@ -34,8 +34,8 @@
     "supertest": "^2.0.1"
   },
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "https://github.com/wordnik/wordnik-api-lb.git"
   },
   "license": "MIT",
   "description": "wordnik-api-lb"
