@@ -56,23 +56,14 @@ describe ('get all test', function (){
 			})
 		}
 
-	 //   if (process.env.NODE_ENV === 'Bluemix-test'){
-		// 	var setupBluemix = require ('./database/setupBluemixMongo.js');
-		// 	setupBluemix.setUp(function(err, response){
-		// 		done();
-		// 	})
-		// }
+	   if (process.env.NODE_ENV === 'Bluemix-test'){
+			var setupBluemix = require ('./database/setupBluemixMongo.js');
+			setupBluemix.setUp(function(err, response){
+				done();
+			})
+		}
 	});
 
-	// after(function(done) {
-	 //   if (process.env.NODE_ENV = 'development'){
-		// 	var teardownLocal = require ('./database/teardownLocalMongo.js');
-		// 	teardownLocal.tearDown(function(err, response){
-		// 		done();
-		// 	})
-		// }
-		
-	// });
 
  it('returns all the adopted word', function(done) {
     api.get('/api/adoptions/')
