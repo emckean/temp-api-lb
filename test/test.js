@@ -50,7 +50,7 @@ describe ('API tests', function (){
 			teardownBluemix.tearDown(function(err, response){
 				if (err){
 					console.log(err)
-				} else {
+				} 
 				var setupBluemix = require ('./database/setupBluemixMongo.js');
 				setupBluemix.setUp(function(err, response){
 					if (err){
@@ -58,7 +58,6 @@ describe ('API tests', function (){
 					}
 					done();
 				})
-				}
 			})
 
 		}
