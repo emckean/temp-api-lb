@@ -8,7 +8,7 @@
     "test": "node_modules/.bin/mocha -u tdd"
   },
   "engines": {
-    "node": ">=4.4.6"
+    "node": ">=6.9.1"
   },
   "dependencies": {
     "cfenv": "^1.0.3",
