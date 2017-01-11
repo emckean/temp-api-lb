@@ -9,7 +9,6 @@ var expect = require ('chai').expect;
 var supertest = require('supertest');
 var api = supertest(app)
 
-//cloudFoundry local setup
 
 
 if (process.env.NODE_ENV === 'development') {
@@ -26,7 +25,7 @@ describe ('canary test', function (){
 	});
 });
 
-describe ('get all test', function (){
+describe ('API tests', function (){
 
 	before(function(done) {
 	    // runs before all tests in this block
