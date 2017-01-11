@@ -1,5 +1,5 @@
 {
-  "mLab":{
+  "mongo":{
     "name": "lb-test-mongodb",
     "url": "${MONGODB_CONNECTION_URL}",
     "connector":"mongodb",

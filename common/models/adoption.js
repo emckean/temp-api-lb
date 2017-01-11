@@ -8,11 +8,11 @@ var app = require('../../server/server.js')
 // console.log('this is the db: '+ db)
 
 // console.log((app.dataSources))
-module.exports = function(Adoptedword) {
+module.exports = function(Adoption) {
 
 
-	Adoptedword.findByHash = function(wordHash, cb){
-		Adoptedword.findOne({
+	Adoption.findByHash = function(wordHash, cb){
+		Adoption.findOne({
 			where: {
 				wordHash: wordHash
             }}, function (err, word){
@@ -20,8 +20,8 @@ module.exports = function(Adoptedword) {
 			})
 		};
 
-	Adoptedword.getAllByUserName = function(userName, cb){
-		Adoptedword.find({
+	Adoption.getAllByUserName = function(userName, cb){
+		Adoption.find({
 			where: {
 				wordnikUsername: userName
             }}, function (err, words){
@@ -29,7 +29,7 @@ module.exports = function(Adoptedword) {
 			})
 		};	
 
-	Adoptedword.findExpired = function(date, cb){
+	Adoption.findExpired = function(date, cb){
 		//need to deal with date format, probably use MOMENT
 		//Mon, 02 Jan 2017 03:46:45 GMT
 		console.log('this is the date: ' + date)
@@ -65,7 +65,7 @@ module.exports = function(Adoptedword) {
 
 
 		var startDate = "01-01-2000"
-		Adoptedword.find({
+		Adoption.find({
 			where: {
 				dateExpires: {between: [new Date(startDate), new Date(date)]}
             }}, function (err, words){
@@ -76,7 +76,7 @@ module.exports = function(Adoptedword) {
 
 
 //remote methods setup
-	Adoptedword.remoteMethod(
+	Adoption.remoteMethod(
 		'findByHash', {
 			http: {
 				path: '/findByHash',
@@ -91,7 +91,7 @@ module.exports = function(Adoptedword) {
 			}
 		});
 
-	Adoptedword.remoteMethod(
+	Adoption.remoteMethod(
 		'getAllByUserName', {
 			http: {
 				path: '/getAllByUserName',
@@ -106,7 +106,7 @@ module.exports = function(Adoptedword) {
 			}
 		});
 
-	Adoptedword.remoteMethod(
+	Adoption.remoteMethod(
 		'findExpired', {
 			http: {
 				path: '/findExpired',

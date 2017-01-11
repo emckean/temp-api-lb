@@ -1,9 +1,8 @@
 {
-  "mongo": {
+  "mLab": {
     "host": "mongolab.com",
     "port": 41652,
     "url": "${MONGODB_CONNECTION_URL}",
-    "name": "mongo",
     "connector": "mongodb"
   }
 }

@@ -21,7 +21,7 @@ exports.tearDown = function(callback) {
 
 	    // do some work here with the database.
 
-	    var collection = db.collection('adoptedWords');
+	    var collection = db.collection('adoption');
 	    
 	    collection.drop(function (err, result){
 	    	if (err) {

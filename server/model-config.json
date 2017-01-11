@@ -13,8 +13,8 @@
       "./mixins"
     ]
   },
-  "adoptedWord": {
-    "dataSource": "mLab",
+  "adoption": {
+    "dataSource": "mongo",
     "public": true
   }
 }

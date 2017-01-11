@@ -56,7 +56,7 @@ mongodb://admin:DWEUSRBMBWEWXDAA@sl-us-dal-9-portal.4.dblayer.com:18234,sl-us-da
 
 	    // do some work here with the database.
 	    mongodb = db.db("test")
-	    var collection = mongodb.collection('adoptedWords');
+	    var collection = mongodb.collection('adoptions');
 	    
 	    collection.drop(function (err, result){
 	    	if (err) {
@@ -64,7 +64,7 @@ mongodb://admin:DWEUSRBMBWEWXDAA@sl-us-dal-9-portal.4.dblayer.com:18234,sl-us-da
 	        	db.close();
 	      		callback(err)
 	      	} else {
-		       	console.log('collection dropped');
+		       	console.log('adoption collection dropped');
 		       	db.close();
 		       	callback (null, 'collection dropped')
 	      	}

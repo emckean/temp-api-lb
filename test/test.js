@@ -75,7 +75,7 @@ describe ('get all test', function (){
 	// });
 
  it('returns all the adopted word', function(done) {
-    api.get('/api/adoptedWords/')
+    api.get('/api/adoptions/')
     .end(function (err, res){
     	expect(Object.keys(res.body).length).to.equal(10);
     	done();
@@ -83,7 +83,7 @@ describe ('get all test', function (){
   });
 
   it('returns an adopted word by wordHash', function(done) {
-    api.get('/api/adoptedWords/findByHash?wordHash=4b7489207cc9382e0a55c3791a1a3cfc5ae684bb')
+    api.get('/api/adoptions/findByHash?wordHash=4b7489207cc9382e0a55c3791a1a3cfc5ae684bb')
     .end(function (err, res){
     	if (err) throw err;
     	console.log(res.body)
@@ -93,7 +93,7 @@ describe ('get all test', function (){
   });
 
   it('returns a adopted words by wordnikUserName', function(done) {
-    api.get('/api/adoptedWords/getAllByUserName?username=fakeymcfakeypants')
+    api.get('/api/adoptions/getAllByUserName?username=fakeymcfakeypants')
     .end(function (err, res){
     	if (err) throw err;
     	console.log(res.body)

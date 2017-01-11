@@ -1,10 +1,7 @@
 {
-  "name": "adoptedWord",
-  "mongodb": {
-        "collection": "adoptedWords"
-      },
+  "name": "adoption",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
@@ -31,7 +28,7 @@
       "default": "active"
     },
     "dateAdded": {
-      "type": "Date",
+      "type": "date",
       "required": true
     },
     "note": {
@@ -92,11 +89,11 @@
       "default": "false"
     },
     "dateExpires": {
-      "type": "Date",
+      "type": "date",
       "required": true
     },
     "dateRenewed": {
-      "type": "Date",
+      "type": "date",
       "required": true
     },
     "payment": {
