@@ -56,7 +56,7 @@ mongodb://admin:DWEUSRBMBWEWXDAA@sl-us-dal-9-portal.4.dblayer.com:18234,sl-us-da
 
 	    // do some work here with the database.
 	    mongodb = db.db("test")
-	    var collection = mongodb.collection('adoptions');
+	    var collection = mongodb.collection('adoption');
 	    
 	    collection.drop(function (err, result){
 	    	if (err) {

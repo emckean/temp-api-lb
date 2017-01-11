@@ -91,7 +91,7 @@ exports.setUp  = function(callback) {
 	    //HURRAY!! We are connected. :)
 	    console.log('Connection established to', mongoURI);
         mongodb = db.db("test")
-	    var collection = mongodb.collection('adoptions');
+	    var collection = mongodb.collection('adoption');
 	    // do some work here with the database.
 	    collection.insert(testData, function (err, result) {
 	      if (err) {
