@@ -49,19 +49,21 @@ describe ('get all test', function (){
 	    	console.log('got here')
 			var teardownBluemix = require ('./database/teardownBluemixMongo.js');
 			teardownBluemix.tearDown(function(err, response){
+				if (err){
+					console.log(err)
+				} else {
+				var setupBluemix = require ('./database/setupBluemixMongo.js');
+				setupBluemix.setUp(function(err, response){
+					if (err){
+						console.log(err)
+					}
+					done();
+				})
+				}
 			})
-			var setupBluemix = require ('./database/setupBluemixMongo.js');
-			setupBluemix.setUp(function(err, response){
-				done();
-			})
+
 		}
 
-	   if (process.env.NODE_ENV === 'Bluemix-test'){
-			var setupBluemix = require ('./database/setupBluemixMongo.js');
-			setupBluemix.setUp(function(err, response){
-				done();
-			})
-		}
 	});
 
 
