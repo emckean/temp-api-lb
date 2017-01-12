@@ -1,3 +1,10 @@
+1/11
+cf logs lb-mongo-test-app to get logs
+figured out date issue, it was ISODate()
+
+1/9
+CI testing working, CI Deploy stuck in staging
+
 1/3
 maybe IDs need to be ObjectID because wordHash is too long? 
 https://github.com/strongloop/loopback-connector-mongodb/issues/52

@@ -30,44 +30,15 @@ module.exports = function(Adoption) {
 		};	
 
 	Adoption.findExpired = function(date, cb){
-		//need to deal with date format, probably use MOMENT
-		//Mon, 02 Jan 2017 03:46:45 GMT
 		console.log('this is the date: ' + date)
-		var ISODate;
 		if (moment(date, "DD-MMM-YYYY").isValid()){
 			console.log('got here')
 			ISODate = moment(date, "DD-MMM-YYYY").format();
 		}
-
-		var testDate = new Date(ISODate)
-
-		// this errors out as err, db = undefined
-		// app.dataSources.mLab.connect(function(err,db){
-	 //        db.collection('adoptedWords').findOne({},function(err,doc){
-	 //            console.log(doc)
-	 //        })
-	 //        console.log(err)
-	 //        console.log(db)
-	 //    })
-
-	 	//this almost works! 
-	 	// var dbFunc = 'function() { return db.adoptedWords.findOne({}); }';
-
-		 // app.dataSources.mLab.connector.db.eval(dbFunc, function(err, result) {
-		 // 	console.log(err)
-		 // 	console.log(result)
-		 // 	cb(null, result)
-		 //   if (err) {
-		 //       console.log("There was an error calling dbFunc", err);
-		 //       return;
-		 //   }
-		 // });
-
-
-		var startDate = "01-01-2000"
+		var startDate = "01-01-2017"
 		Adoption.find({
 			where: {
-				dateExpires: {between: [new Date(startDate), new Date(date)]}
+				dateExpires: {lte: startDate}
             }}, function (err, words){
 				cb(null, words);
 			})

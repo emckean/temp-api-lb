@@ -9,19 +9,19 @@ var testData = require('./testdata.json');
 // for ISO Dates
 var newData = testData.map(function(word){
    console.log(word.dateAdded)
-   word.dateAdded = 'ISODate("'+word.dateAdded+')'
+   word.dateAdded = {$date: word.dateAdded}
    console.log('date added: ' + word.dateAdded)
    if (word.dateExpires){
-   	word.dateExpires = 'ISODate("'+word.dateExpires+'")'
+   	word.dateExpires = {$date: word.dateExpires}
    	console.log('new expiration format: ' + word.dateExpires)
    } else {
    	console.log('date added: ' + word.dateAdded)
-      word.dateExpires = 'ISODate("'+word.dateExpires+'")'
+      word.dateExpires = {$date: word.dateExpires}
    	console.log('date expires: ' + word.dateExpires)
    }
    if (word.dateRenewed){
    	console.log('date renewed: ' + word.dateRenewed)
-   	word.dateRenewed = 'ISODate("'+word.dateRenewed+'")'
+   	word.dateRenewed = {$date: word.dateRenewed}
    	console.log('new format renewed date: ' + word.dateRenewed)
    }
    return (word);

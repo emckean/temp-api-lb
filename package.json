@@ -30,9 +30,10 @@
     "eslint-config-loopback": "^4.0.0",
     "mocha": "^3.2.0",
     "mongodb": "^2.2.16",
+    "mongoose": "^4.7.6",
     "nsp": "^2.1.0",
-    "supertest": "^2.0.1",
-    "snyk": "^1.23.3"
+    "snyk": "^1.23.3",
+    "supertest": "^2.0.1"
   },
   "repository": {
     "type": "git",
