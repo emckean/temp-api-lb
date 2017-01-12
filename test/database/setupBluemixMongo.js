@@ -25,7 +25,7 @@ var mongodb;
 exports.setUp  = function(callback) {
 
     var parsedURI = url.parse(credentials.uri)
-    var mongoURI = 'mongodb://loopback-test:' + process.env.MONGO_PWD+'@' + parsedURI.host+ '/test?ssl=true&sslValidate=true'
+    var mongoURI = 'mongodb://loopback-test:' + process.env.MONGO_PWD+'@' + parsedURI.host+ '/test?ssl=true'
     console.log(mongoURI)
 	// Use connect method to connect to the Server
     var options = {
