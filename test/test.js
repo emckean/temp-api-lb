@@ -69,7 +69,6 @@ describe ('API tests', function (){
  it('returns all the adopted word', function(done) {
     api.get('/api/adoptions/')
     .end(function (err, res){
-    	console.log(res.body)
     	expect(Object.keys(res.body).length).to.equal(10);
     	done();
     })
@@ -79,8 +78,29 @@ describe ('API tests', function (){
     api.get('/api/adoptions/findByHash?wordHash=4b7489207cc9382e0a55c3791a1a3cfc5ae684bb')
     .end(function (err, res){
     	if (err) throw err;
-    	// console.log(res.body)
     	expect(Object.keys(res.body).length).to.equal(1);
+    	done();
+    })   
+  });
+
+  it('returns adopted words that have expired', function(done) {
+    api.get('/api/adoptions/findExpired?date=01-Jan-2015')
+    .end(function (err, res){
+    	if (err) throw err;
+    	expect(res.body.adoptions[0].word).to.equal('testwordtwo');
+    	done();
+    })   
+  });
+
+
+ it('returns an error for a bad date in findExpired', function(done) {
+    api.get('/api/adoptions/findExpired?date=turnip')
+    .end(function (err, res){
+    	// console.log(res.body)
+    	// console.log(res)
+    	expect(res.body.error.message).to.equal('Date must be in format DD-MMM-YYYY');
+    	expect(res.body.error.statusCode).to.equal(400);
+    	
     	done();
     })   
   });

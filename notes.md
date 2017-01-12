@@ -1,6 +1,8 @@
 1/11
 cf logs lb-mongo-test-app to get logs
 figured out date issue, it was ISODate()
+had to do some Mongo hijinks to get the date saved correctly
+next step: update testsetup for Bluemix
 
 1/9
 CI testing working, CI Deploy stuck in staging

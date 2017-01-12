@@ -30,15 +30,18 @@ module.exports = function(Adoption) {
 		};	
 
 	Adoption.findExpired = function(date, cb){
-		console.log('this is the date: ' + date)
+		var ISODate;
 		if (moment(date, "DD-MMM-YYYY").isValid()){
-			console.log('got here')
 			ISODate = moment(date, "DD-MMM-YYYY").format();
 		}
-		var startDate = "01-01-2017"
+		else {
+			var err = new Error('Date must be in format DD-MMM-YYYY');
+			err.statusCode = 400;
+			cb(err)
+		}
 		Adoption.find({
 			where: {
-				dateExpires: {lte: startDate}
+				dateExpires: {lte: ISODate}
             }}, function (err, words){
 				cb(null, words);
 			})
@@ -84,7 +87,7 @@ module.exports = function(Adoption) {
 				verb: 'get'
 			},
 			description: "returns adoptions that have expired",
-			accepts: {arg: 'date', type: 'date', http: {source: 'query'}, description: "date"},
+			accepts: {arg: 'date', type: 'date', http: {source: 'query'}, description: "date: DD-MMM-YYYY"},
 			returns: {
 				arg: 'adoptions',
 				type: 'json'
