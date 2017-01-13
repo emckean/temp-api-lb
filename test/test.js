@@ -3,13 +3,15 @@ if (process.env.NODE_ENV === undefined){
 	console.log(process.env.NODE_ENV)
 	process.env.NODE_ENV = 'development'
 }
-
+var rewire = require('rewire');
 var app = require('../server/server.js');
 var expect = require ('chai').expect;
 var supertest = require('supertest');
 var api = supertest(app)
 
-
+var adoptFunctions = rewire('../common/models/adoption.js');
+console.log(adoptFunctions)
+var checkURL = adoptFunctions.__get__('checkURL'); 
 
 if (process.env.NODE_ENV === 'development') {
 	process.env.MONGODB_CONNECTION_URL = 'mongodb://localhost:27017/test';
@@ -105,7 +107,7 @@ describe ('API tests', function (){
     })   
   });
 
-  it('returns a adopted words by wordnikUserName', function(done) {
+  it('returns adopted words by wordnikUserName', function(done) {
     api.get('/api/adoptions/getAllByUserName?username=fakeymcfakeypants')
     .end(function (err, res){
     	if (err) throw err;
@@ -114,5 +116,58 @@ describe ('API tests', function (){
     	done();
     })   
   });
+
+  it('returns adopted words by date created', function(done) {
+    api.get('/api/adoptions/findByCreateDate?date=01-Jan-2014')
+    .end(function (err, res){
+    	if (err) throw err;
+    	// console.log(res.body)
+    	expect(res.body.adoptions[0].word).to.equal('testwordsix');
+    	done();
+    })   
+  });
+
+  it('returns an error for a bad date in findByCreateDate', function(done) {
+    api.get('/api/adoptions/findByCreateDate?date=turnip')
+    .end(function (err, res){
+    	// console.log(res.body)
+    	// console.log(res)
+    	expect(res.body.error.message).to.equal('Date must be in format DD-MMM-YYYY');
+    	expect(res.body.error.statusCode).to.equal(400);
+    	
+    	done();
+    })   
+  });
+
+});
+
+describe ('helper function tests', function (){
+
+	it('adoption.checkURL: should return ok if link is Twitter link', function(done){
+
+		var testLink = 'https://www.twitter.com/emckean'
+		checkURL(testLink, function(err, res){
+			expect(res).to.equal('Twitter ok')
+		});
+		done();
+	});
+
+	it('adoption.checkURL: should return ok if link is Twitter name', function(done){
+
+		var testLink = '@emckean'
+		checkURL(testLink, function(err, res){
+			expect(res).to.equal('Twitter ok')
+		});
+		done();
+	});
+
+	it('adoption.checkURL: should return adoptlink if link is other URL', function(done){
+
+		var testLink = 'https://www.google.com'
+		checkURL(testLink, function(err, res){
+			expect(res).to.equal('adoptlink')
+		});
+		done();
+	});
 
 });

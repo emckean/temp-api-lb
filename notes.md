@@ -1,3 +1,12 @@
+1/12
+updated tests
+added findByCreateDate
+Bluemix deploy still failing
+
+check Twitter validation
+
+mongo aggregations: https://github.com/strongloop/loopback/issues/890
+
 1/11
 cf logs lb-mongo-test-app to get logs
 figured out date issue, it was ISODate()

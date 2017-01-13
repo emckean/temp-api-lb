@@ -94,7 +94,7 @@
     },
     "dateRenewed": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "payment": {
       "type": "object",

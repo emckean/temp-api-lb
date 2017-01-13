@@ -22,7 +22,8 @@
     "loopback-datasource-juggler": "^2.39.0",
     "moment": "^2.17.1",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^1.0.1"
+    "strong-error-handler": "^1.0.1",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -32,6 +33,7 @@
     "mongodb": "^2.2.16",
     "mongoose": "^4.7.6",
     "nsp": "^2.1.0",
+    "rewire": "^2.5.2",
     "snyk": "^1.23.3",
     "supertest": "^2.0.1"
   },
