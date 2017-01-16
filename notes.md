@@ -1,9 +1,14 @@
+1/16
+
 1/12
 updated tests
 added findByCreateDate
+added helper function for twitter
+started work on operation hook
 Bluemix deploy still failing
 
-check Twitter validation
+check Twitter validation;
+need to convert payment date to ISOformat
 
 mongo aggregations: https://github.com/strongloop/loopback/issues/890
 

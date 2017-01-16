@@ -1,0 +1,5 @@
+{"fullName":"Fakey McFakeypants","email":"test@alphaorder.com","word":"single","wordHash":"ce0b1612aa711b78a720295d271a33894e2b72bf","id":"ce0b1612aa711b78a720295d271a33894e2b72bf","dateAdded":"2014-01-01T00:00:00-08:00","note":"","Twitter":"WordnikAPI","type":"paid","offensive":"FALSE","giftee":"","gifteeEmail":"","gifteeLink":"","gifteeNote":"","gifteeTwitter":"","paypal-url":"https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=receivables@wordnik.com&amount=50.00&item_name=Adoption%20fee%20for%20%27bellycheer%27","status":"active","wordnikUsername":"fakeymcfakeypants","adoptLink":"","backerType":"Patron","renewal":"false","dateExpires":"2016-01-01T00:00:00-08:00","payment" : [ {
+    "date" : "Sat Jan 07 2017 23:08:29 GMT+0000 (UTC)",
+    "type" : "Stripe",
+    "amount" : "25.00"
+  } ]}

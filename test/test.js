@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === undefined){
 }
 var rewire = require('rewire');
 var app = require('../server/server.js');
+var adoptHooks = require('../common/models/adoption.js');
 var expect = require ('chai').expect;
 var supertest = require('supertest');
 var api = supertest(app)
@@ -12,6 +13,8 @@ var api = supertest(app)
 var adoptFunctions = rewire('../common/models/adoption.js');
 console.log(adoptFunctions)
 var checkURL = adoptFunctions.__get__('checkURL'); 
+var changeURL = adoptFunctions.__get__('changeURL'); 
+
 
 if (process.env.NODE_ENV === 'development') {
 	process.env.MONGODB_CONNECTION_URL = 'mongodb://localhost:27017/test';
@@ -74,15 +77,6 @@ describe ('API tests', function (){
     	expect(Object.keys(res.body).length).to.equal(10);
     	done();
     })
-  });
-
-  it('returns an adopted word by wordHash', function(done) {
-    api.get('/api/adoptions/findByHash?wordHash=4b7489207cc9382e0a55c3791a1a3cfc5ae684bb')
-    .end(function (err, res){
-    	if (err) throw err;
-    	expect(Object.keys(res.body).length).to.equal(1);
-    	done();
-    })   
   });
 
   it('returns adopted words that have expired', function(done) {
@@ -170,4 +164,29 @@ describe ('helper function tests', function (){
 		done();
 	});
 
+	it('adoption.changeURL: should return adoptlink if link is other URL', function(done){
+
+		var ctx = {instance: {
+					Twitter: 'https://www.google.com'
+		}}
+		changeURL(ctx, function(err, res){
+			console.log(res)
+			expect(res.instance.adoptLink).to.equal('https://www.google.com')
+		});
+		done();
+	});
+
+	it('adoption.changeURL: should return Twitter if link is Twitter URL', function(done){
+
+		var ctx = {instance: {
+					Twitter: 'https://www.twitter.com/wordnik'
+		}}
+		changeURL(ctx, function(err, res){
+			console.log(res)
+			expect(res.instance.Twitter).to.equal('https://www.twitter.com/wordnik')
+		});
+		done();
+	});
+
 });
+

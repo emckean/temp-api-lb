@@ -57,6 +57,7 @@ exports.setUp  = function(callback) {
            if (word.dateRenewed){
             word.dateRenewed = new Date(word.dateRenewed)
            }
+           word._id = word.wordHash;
            return (word);
         });
         Adoption.collection.insertMany(testData, function(err,r) {

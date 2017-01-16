@@ -6,8 +6,6 @@ var url = require('url');
 var loopback = require('loopback');
 var app = require('../../server/server.js')
 
-// var db = app.dataSources.mLab.database
-// console.log('this is the db: '+ db)
 
 function checkURL(adoptionURL, callback){
  	if (validUrl.isWebUri(adoptionURL)) {
@@ -23,44 +21,77 @@ function checkURL(adoptionURL, callback){
  	}
 } 	
 
-// console.log((app.dataSources))
+function changeURL(ctx, callback){
+	if (ctx.instance) {
+		console.log('in instance')
+		console.log(ctx.instance)
+	  	checkURL(ctx.instance.Twitter, function(err, response){
+	  		if (err){
+	  			next()
+	  		}
+	  		if (response === 'adoptlink'){
+	  			ctx.instance.adoptLink = ctx.instance.Twitter;
+	  			ctx.instance.Twitter = '';
+	  		}
+	  		 callback(null, ctx);
+	  	})
+	    
+	  } else {
+	    	checkURL(ctx.data.Twitter, function(err, response){
+		  		if (err){
+		  			next()
+		  		}
+		  		if (response === 'adoptlink'){
+		  			ctx.data.adoptLink = ctx.instance.Twitter;
+		  			ctx.data.Twitter = '';
+		  		}
+		  	callback(null, ctx)
+	  	})
+	  }
+}
+
 module.exports = function(Adoption) {
 
+	// Adoption.observe('before save', function (ctx, next) {
+	//   if (ctx.isNewInstance) {
+	//     console.log('document is new')
+	//     console.log('save(), create(), or upsert() called')
+	//     console.log('ctx.instance', ctx.instance)
+	//     ctx.instance.Twitter = 'wordnik'
+	//     console.log('ctx.instance Twitter', ctx.instance.Twitter)
+	//   } else {
+	//     console.log('document is updated')
+	//     if (ctx.instance) {
+	//       console.log('save() called')
+	//       console.log('ctx.instance', ctx.instance)
+	//     } else if (ctx.data && ctx.currentInstance) {
+	//       console.log('prototype.updateAttributes() called')
+	//       console.log('ctx.currentInstance', ctx.instance)
+	//       console.log('ctx.data', ctx.data)
+	//     } else if (ctx.data) {
+	//       console.log('updateAll() or upsert() called')
+	//       console.log('ctx.data', ctx.data)
+	//     }
+	//   }
+
+	//   next()
+	// })
+
 	Adoption.observe('before save', function (ctx, next) {
-	  if (ctx.isNewInstance) {
-	    console.log('document is new')
-	    console.log('save(), create(), or upsert() called')
-	    console.log('ctx.instance', ctx.instance)
-	  } else {
-	    console.log('document is updated')
-	    if (ctx.instance) {
-	      console.log('save() called')
-	      console.log('ctx.instance', ctx.instance)
-	    } else if (ctx.data && ctx.currentInstance) {
-	      console.log('prototype.updateAttributes() called')
-	      console.log('ctx.currentInstance', ctx.instance)
-	      console.log('ctx.data', ctx.data)
-	    } else if (ctx.data) {
-	      console.log('updateAll() or upsert() called')
-	      console.log('ctx.data', ctx.data)
-	    }
-	  }
+		console.log('this is the context: ' + JSON.stringify(ctx))
+		changeURL(ctx, function(err, newCtx){
+			ctx = newCtx;
+		});
+		console.log('this is the new context: ' + JSON.stringify(ctx))
 
 	  next()
-	})
+	});
+
 
 	//validations
-	// adoption.validatesUniquenessOf('wordHash', {message: 'word is not unique'});
+	// Adoption.validatesUniquenessOf('wordHash', {message: 'word is not unique'});
 
 
-	Adoption.findByHash = function(wordHash, cb){
-		Adoption.findOne({
-			where: {
-				wordHash: wordHash
-            }}, function (err, word){
-				cb(null, word);
-			})
-		};
 
 	Adoption.getAllByUserName = function(userName, cb){
 		Adoption.find({
@@ -114,20 +145,7 @@ module.exports = function(Adoption) {
 
 
 //remote methods setup
-	Adoption.remoteMethod(
-		'findByHash', {
-			http: {
-				path: '/findByHash',
-				verb: 'get'
-			},
-			description: "returns word by hash",
-			accepts: {arg: 'wordHash', type: 'string', http: {source: 'query'}, description: "wordHash"},
-			returns: {
-				arg: 'adoptions',
-				type: 'json'
 
-			}
-		});
 
 	Adoption.remoteMethod(
 		'getAllByUserName', {
