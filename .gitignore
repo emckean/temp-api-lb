@@ -19,6 +19,6 @@ coverage
 node_modules
 npm-debug.log
 server/config.development.js
-
+tempdata.json
 local-vcap.json
 
