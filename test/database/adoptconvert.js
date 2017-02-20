@@ -8,21 +8,16 @@ var validUrl = require('valid-url');
 var url = require('url');
 var moment = require('moment');
 
-var devConfig = require('../../server/config.development.js');
-var newUrl = devConfig.MONGODB_CONNECTION_URL;
-console.log(newUrl);
-var url = 'mongodb://localhost:27017/test';
-// var testData = require('./testdata.json')
 
 var formats = ['ddd MMM d YYYY HH:mm:ss a', 'ddd, d MMM YYYY HH:mm:ss z', 'YYYY-MM-DDTHH:mm:ssZ' ]
 
 //don't forget that this file isn't clean JSON and needs line-end commas and square brackets
-var testData = require('/Users/emckean/Documents/datasets/adopt/01192017.json')
+var testData = require('/Users/emckean/Documents/datasets/adopt/01192017-2.json')
+// var testData = require('/Users/emckean/Documents/datasets/adopt/sanitize-small-edit.json')
 var cleanTestData = [];
 
 function selectValues(topLevelObj){
    return new Promise(function(resolve, reject) {
-  // console.log(topLevelObj.path.collection + ' ' + topLevelObj.kind)
   if (topLevelObj.path.collection === "adoptedWords" && topLevelObj.value ){
     resolve(topLevelObj.value)
   } 
@@ -38,9 +33,7 @@ var fixTwitter = function(adoptObj) {
 })}
 
 function convertDate(date){
-  var formats = ['ddd MMM d YYYY HH:mm:ss a', 'ddd, d MMM YYYY HH:mm:ss z', 'YYYY-MM-DDTHH:mm:ssZ' ]
   var ISODate = moment(date, formats).format();
-  // console.log(ISODate)
   return(ISODate)
 }
 
@@ -85,10 +78,9 @@ var checkDateAdded = function(adoptObj) {
 var addExpire = function(adoptObj){
     return new Promise(function(resolve, reject) {
     if (!adoptObj.hasOwnProperty('dateExpires')){
-      // console.log(adoptObj.word)
       adoptObj.dateExpires = moment(adoptObj.dateAdded, formats).add(1, 'years').format()
-      // console.log(adoptObj.dateExpires)
     }    
+    // console.log(adoptObj)
     resolve(adoptObj)
 })
   }
@@ -107,34 +99,35 @@ var miscCleanup = function(adoptObj){
 
 var cleanData = testData.map(function(obj){
         if (selectValues(obj) !== undefined){
-          // cleanData.push(selectValues(obj))
                return (selectValues(obj));
         }
     })
 
 var finalData = [];
 function makeFinalArray(word, callback){
-       miscCleanup(word)
+    return miscCleanup(word)
       .then(fixTwitter)
       .then(addPayment)
       .then(checkDateAdded)
       .then(addExpire)
-      .then(function(data){
-        console.log(data)
-        return(data)
+      // .then(function(data){
+      //   // console.log(data)
+      //   return(data)
         
-      })
+      // })
       .catch(function(error) {
         console.log('oh no', error);
       })
 }
 
 
-Promise.all(cleanData.map(function(word, index){
-  return makeFinalArray(word)
-  // finalData.push(word)
 
-}))
+//this is the bit that isn't working as expected
+Promise.all(cleanData.map(function(word){
+  return makeFinalArray(word)
+
+})).then(res => console.log(JSON.stringify(res, null, 2)))
+
 
 // function tryThis(callback){
 //   callback(null, Promise.all(cleanData.map(function(word, index){
